@@ -13,4 +13,19 @@
 
     <style name="Widget.ProjectTrackerChallenge.Card.Small" parent="Widget.ProjectTracker.Card.Small" />
 
+
+<!--    Anim Dialog   -->
+
+    <style name="App_Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog" />
+    <style name="DialogAnim_Base">
+        <item name="android:windowEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_right</item>
+    </style>
+    <style name="DialogAnim.Save" parent="DialogAnim_Base">
+        <item name="android:windowExitAnimation">@anim/slide_out_right</item>
+    </style>
+    <style name="DialogAnim.Delete" parent="DialogAnim_Base">
+        <item name="android:windowExitAnimation">@anim/slide_out_left</item>
+    </style>
+
 </resources>

@@ -13,6 +13,7 @@ junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 hilt = "2.52"
+filamentAndroid = "1.17.1"
 
 [libraries]
 # AndroidX & Material
@@ -43,6 +44,7 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 # Hilt (PISAH dua entri, no nested!)
 hilt-android  = { module = "com.google.dagger:hilt-android",          version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+filament-android = { group = "com.google.ar.sceneform", name = "filament-android", version.ref = "filamentAndroid" }
 
 [plugins]
 android-application      = { id = "com.android.application",      version.ref = "agp" }
