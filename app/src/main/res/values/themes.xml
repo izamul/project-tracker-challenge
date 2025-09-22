@@ -1,0 +1,31 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ProjectTrackerChallenge" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Material 3 color mapping -->
+        <item name="colorPrimary">@color/md3_primary</item>
+        <item name="colorOnPrimary">@color/md3_onPrimary</item>
+        <item name="colorSecondary">@color/md3_secondary</item>
+        <item name="colorOnSecondary">@color/md3_onSecondary</item>
+        <item name="colorTertiary">@color/md3_tertiary</item>
+        <item name="colorOnTertiary">@color/md3_onTertiary</item>
+        <item name="colorSurface">@color/md3_surface</item>
+        <item name="colorOnSurface">@color/md3_onSurface</item>
+        <item name="android:colorBackground">@color/md3_background</item>
+        <item name="colorOnBackground">@color/md3_onBackground</item>
+        <item name="colorSurfaceVariant">@color/md3_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md3_onSurfaceVariant</item>
+        <item name="colorError">@color/md3_error</item>
+        <item name="colorOnError">@color/md3_onError</item>
+        <item name="colorOutline">@color/md3_outline</item>
+
+        <!-- Shape & ripple optional -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.ProjectTrackerChallenge.Dialog</item>
+    </style>
+
+    <style name="ThemeOverlay.ProjectTrackerChallenge.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorSurface">@color/app_card</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+    </style>
+</resources>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ===== Brand / Accent ===== -->
+    <color name="brand_primary">#2A6A46</color>
+    <color name="brand_onPrimary">#FFFFFF</color>
+    <color name="brand_primaryVariant">#0D4F3C</color>
+
+    <!-- ===== Neutrals ===== -->
+    <color name="neutral_bg">#F9F9FF</color>
+    <color name="neutral_onBg">#1A1C20</color>
+    <color name="neutral_surface">#F9F9FF</color>
+    <color name="neutral_surfaceVariant">#E0E2EC</color>
+    <color name="neutral_onSurface">#1A1C20</color>
+    <color name="neutral_onSurfaceMuted">#44474E</color>
+    <color name="neutral_outline">#74777F</color>
+
+    <!-- ===== App semantic tokens ===== -->
+    <color name="app_bg">@color/neutral_bg</color>
+    <color name="app_card">#FFFFFF</color>
+    <color name="app_card_variant">#EDEDF4</color>
+
+    <color name="text_primary">@color/neutral_onSurface</color>
+    <color name="text_secondary">@color/neutral_onSurfaceMuted</color>
+    <color name="text_muted">#888888</color>
+    <color name="icon_muted">#888888</color>
+
+    <color name="accent_primary">@color/brand_primaryVariant</color>   <!-- Add Task -->
+    <color name="accent_primary_on">@color/brand_onPrimary</color>
+    <color name="accent_warning">#8B4513</color>                       <!-- In-Progress badge -->
+    <color name="accent_error">#CC6666</color>                         <!-- delete tint -->
+    <color name="accent_ok">@color/brand_primary</color>               <!-- success/progress -->
+
+    <!-- Status badges / dots -->
+    <color name="status_draft_bg">#333333</color>
+    <color name="status_inprogress_bg">@color/accent_warning</color>
+    <color name="status_done_bg">@color/accent_ok</color>
+    <color name="dot_gray">#808080</color>
+    <color name="dot_orange">#FF8C00</color>
+    <color name="dot_green">@color/accent_ok</color>
+
+    <!-- Progress -->
+    <color name="progress_track">#D7D7DE</color>
+    <color name="progress_fill">@color/accent_ok</color>
+
+    <!-- Material 3 mapping (light) -->
+    <color name="md3_primary">@color/brand_primary</color>
+    <color name="md3_onPrimary">@color/brand_onPrimary</color>
+    <color name="md3_secondary">#565E71</color>
+    <color name="md3_onSecondary">#FFFFFF</color>
+    <color name="md3_tertiary">#705574</color>
+    <color name="md3_onTertiary">#FFFFFF</color>
+    <color name="md3_background">@color/app_bg</color>
+    <color name="md3_onBackground">@color/neutral_onBg</color>
+    <color name="md3_surface">@color/neutral_surface</color>
+    <color name="md3_onSurface">@color/neutral_onSurface</color>
+    <color name="md3_surfaceVariant">@color/neutral_surfaceVariant</color>
+    <color name="md3_onSurfaceVariant">@color/neutral_onSurfaceMuted</color>
+    <color name="md3_error">#BA1A1A</color>
+    <color name="md3_onError">#FFFFFF</color>
+    <color name="md3_outline">@color/neutral_outline</color>
+
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.ProjectTracker.Card" parent="">
+        <item name="cardBackgroundColor">@color/app_card</item>
+        <item name="cardCornerRadius">12dp</item>
+        <item name="cardElevation">0dp</item>
+    </style>
+
+    <style name="Widget.ProjectTracker.Card.Small" parent="Widget.ProjectTracker.Card">
+        <item name="cardCornerRadius">8dp</item>
+    </style>
+
+    <style name="Widget.ProjectTrackerChallenge.Card.Small" parent="Widget.ProjectTracker.Card.Small" />
+
+</resources>
