@@ -148,13 +148,10 @@ END
 
 ---
 
-demo_section = """
-
----
 
 ## Demo (Video)
 
-<video src="demo/demo.mp4" controls width="720">
+<video src="demo/demo_app.mp4" controls width="720">
   Your browser doesn't support embedded video. 
 </video>
 
