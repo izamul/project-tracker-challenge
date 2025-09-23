@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.aptavis.projecttrackerchallenge.R
 import com.aptavis.projecttrackerchallenge.databinding.FragmentHomeBinding
 import com.aptavis.projecttrackerchallenge.domain.model.ProjectComputed
@@ -15,6 +18,7 @@ import com.aptavis.projecttrackerchallenge.ui.dialog.TaskDialogFragment
 import com.aptavis.projecttrackerchallenge.ui.profile.ProfileFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -82,6 +86,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         binding.btnAddTask.setOnClickListener {
+
             if (latestProjects.isEmpty()) {
                 snackbar("Bikin project dulu, baru tambah task")
             } else {
@@ -95,6 +100,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         binding.clTop.setOnClickListener { openProfile() }
     }
+
 
     private fun openAddProject() {
         ProjectDialogFragment

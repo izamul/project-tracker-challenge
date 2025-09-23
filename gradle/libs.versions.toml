@@ -16,6 +16,8 @@ espressoCore = "3.6.1"
 hilt = "2.52"
 filamentAndroid = "1.17.1"
 workRuntimeKtx = "2.9.0"
+hiltCommon = "1.3.0"
+hiltWork = "1.3.0"
 
 [libraries]
 # AndroidX & Material
@@ -49,6 +51,8 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 hilt-android  = { module = "com.google.dagger:hilt-android",          version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 filament-android = { group = "com.google.ar.sceneform", name = "filament-android", version.ref = "filamentAndroid" }
+androidx-hilt-common = { group = "androidx.hilt", name = "hilt-common", version.ref = "hiltCommon" }
+androidx-hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hiltWork" }
 
 [plugins]
 android-application      = { id = "com.android.application",      version.ref = "agp" }

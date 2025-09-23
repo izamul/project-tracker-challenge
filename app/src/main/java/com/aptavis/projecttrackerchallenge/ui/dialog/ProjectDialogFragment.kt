@@ -44,7 +44,6 @@ class ProjectDialogFragment : DialogFragment(R.layout.dialog_project) {
 
         val args = (requireArguments().getSerializable("args") as? Args) ?: Args()
 
-        // Prefill nama saja (status tidak ada)
         binding.tvTitle.text = if (args.modeEdit) "Edit Project" else "New Project"
         binding.btnDelete.visibility = if (args.modeEdit) View.VISIBLE else View.GONE
         binding.etProjectName.setText(args.initialName.orEmpty())
@@ -66,7 +65,6 @@ class ProjectDialogFragment : DialogFragment(R.layout.dialog_project) {
 
         binding.btnDelete.setOnClickListener {
             if (args.modeEdit && args.projectId != null) {
-                // Animasi keluar ke kiri (aksi delete)
                 dialog?.window?.setWindowAnimations(R.style.DialogAnim_Base)
                 viewModel.delete(args.projectId)
                 dismissAllowingStateLoss()

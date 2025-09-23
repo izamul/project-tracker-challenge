@@ -70,7 +70,7 @@ class ProjectExpandableAdapter(
             applyProjectStatus(item.status)
 
             // Progress
-            val pct = item.progress.coerceIn(0, 100)
+            val pct = item.progress
             b.progress.progress = pct
             b.tvPercent.text = "$pct%"
 
@@ -78,8 +78,8 @@ class ProjectExpandableAdapter(
 
             // Meta
             val soon = item.deadlineSoonCount
-            val soonSuffix = if (soon > 0) " • $soon due soon" else ""
-            b.tvMeta.text = "${item.taskCount} task • weights auto-counted$soonSuffix"
+            val soonSuffix = if (soon > 0) "$soon due soon" else ""
+            b.tvMeta.text = "${item.taskCount} task \n$soonSuffix"
 
             // Actions
             b.btnAddTask.setOnClickListener { onQuickAddTask(item.id) }

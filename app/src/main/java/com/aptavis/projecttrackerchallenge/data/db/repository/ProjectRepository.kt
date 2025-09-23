@@ -76,6 +76,7 @@ class ProjectRepository @Inject constructor(
         }
     }
 
+
     // ---------- INTERNAL ----------
     private suspend fun recalcProjectStatus(projectId: Long) {
         val s = db.projectDao().deriveStatusFromTasks(

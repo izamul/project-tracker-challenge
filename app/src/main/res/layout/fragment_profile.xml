@@ -123,7 +123,7 @@
                         android:layout_height="wrap_content"
                         android:lineSpacingExtra="2dp"
                         android:padding="16dp"
-                        android:text="The mobile apps I develop are easy to use, they have accessible UX/UI design, a well-thought-out interface and a high-quality software architecture"
+                        android:text="Harusnya bagian profile ini nanti bisa diedit sesuai user, cuman smentara seperti ini dulu"
                         android:textColor="@color/brand_onPrimary"
                         android:textSize="14sp" />
 

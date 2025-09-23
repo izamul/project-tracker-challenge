@@ -41,16 +41,17 @@ interface ProjectDao {
     @Query("""
       SELECT
         CASE
-          WHEN totalCnt = 0 THEN :draft
-          WHEN doneCnt = totalCnt THEN :done
-          WHEN inprogCnt > 0 THEN :inprog
-          ELSE :inprog
+          WHEN totalCnt = 0 THEN :draft                         -- tidak ada task → Draft
+          WHEN doneCnt = totalCnt THEN :done                    -- semua Done → Done
+          WHEN doneCnt = 0 AND inprogCnt = 0 THEN :draft        -- semua Draft → Draft
+          WHEN inprogCnt > 0 THEN :inprog                       -- ada yg InProgress → InProgress
+          ELSE :inprog                                          -- campuran Draft+Done (belum complete) → InProgress
         END
       FROM (
         SELECT
           COUNT(*) AS totalCnt,
-          COALESCE(SUM(CASE WHEN status = 'Done' THEN 1 ELSE 0 END), 0)     AS doneCnt,
-          COALESCE(SUM(CASE WHEN status = 'InProgress' THEN 1 ELSE 0 END), 0) AS inprogCnt
+          COALESCE(SUM(CASE WHEN status = 'Done' THEN 1 ELSE 0 END), 0)        AS doneCnt,
+          COALESCE(SUM(CASE WHEN status = 'InProgress' THEN 1 ELSE 0 END), 0)  AS inprogCnt
         FROM tasks
         WHERE projectId = :projectId
       ) AS agg
@@ -61,6 +62,7 @@ interface ProjectDao {
         inprog: Status = Status.InProgress,
         done: Status = Status.Done
     ): Status
+
 
 
     @Query("UPDATE projects SET status = :status, updatedAt = :updatedAt WHERE id = :projectId")

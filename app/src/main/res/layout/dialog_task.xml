@@ -93,6 +93,7 @@
             android:id="@+id/swNotify"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:text="Enable notification (H-1)"
             android:layout_marginTop="8dp"/>
 
