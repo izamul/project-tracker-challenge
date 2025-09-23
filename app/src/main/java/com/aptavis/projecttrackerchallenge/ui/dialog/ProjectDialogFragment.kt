@@ -35,7 +35,7 @@ class ProjectDialogFragment : DialogFragment(R.layout.dialog_project) {
         super.onStart()
         dialog?.window?.apply {
             setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-            setWindowAnimations(R.style.DialogAnim_Save)
+            setWindowAnimations(R.style.DialogAnim_Base)
         }
     }
 
@@ -59,7 +59,7 @@ class ProjectDialogFragment : DialogFragment(R.layout.dialog_project) {
             viewModel.onNameChange(name)
 
             // Animasi keluar ke kanan (aksi save)
-            dialog?.window?.setWindowAnimations(R.style.DialogAnim_Save)
+            dialog?.window?.setWindowAnimations(R.style.DialogAnim_Base)
             viewModel.save(isEdit = args.modeEdit, projectId = args.projectId)
             dismissAllowingStateLoss()
         }
@@ -67,7 +67,7 @@ class ProjectDialogFragment : DialogFragment(R.layout.dialog_project) {
         binding.btnDelete.setOnClickListener {
             if (args.modeEdit && args.projectId != null) {
                 // Animasi keluar ke kiri (aksi delete)
-                dialog?.window?.setWindowAnimations(R.style.DialogAnim_Delete)
+                dialog?.window?.setWindowAnimations(R.style.DialogAnim_Base)
                 viewModel.delete(args.projectId)
                 dismissAllowingStateLoss()
             }

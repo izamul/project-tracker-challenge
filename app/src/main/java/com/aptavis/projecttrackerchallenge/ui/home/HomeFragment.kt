@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.aptavis.projecttrackerchallenge.R
 import com.aptavis.projecttrackerchallenge.databinding.FragmentHomeBinding
 import com.aptavis.projecttrackerchallenge.domain.model.ProjectComputed
+import com.aptavis.projecttrackerchallenge.ui.dialog.ChooseProjectDialogFragment
+import com.aptavis.projecttrackerchallenge.ui.dialog.ProjectDialogFragment
+import com.aptavis.projecttrackerchallenge.ui.dialog.TaskDialogFragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,31 +22,104 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val vm: HomeViewModel by viewModels()
 
-    // Adapter sederhana dulu; nanti kamu bisa ganti ke ProjectAdapter versi kartu
-    private val adapter = SimpleProjectAdapter()
+    private lateinit var adapter: ProjectExpandableAdapter
+
+    private var latestProjects: List<ProjectComputed> = emptyList()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHomeBinding.bind(view)
 
-        // RecyclerView
-        binding.rvProjects.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvProjects.adapter = adapter
-        binding.rvProjects.setHasFixedSize(true)
+        adapter = ProjectExpandableAdapter(
+            onEditProject = { p: ProjectComputed -> openEditProject(p) },
+            onQuickAddTask = { projectId: Long -> openAddTaskForProject(projectId) },
+            onExpandRequested = { projectId: Long, expanded: Boolean ->
+                if (expanded) {
+                    vm.tasks(projectId).observe(viewLifecycleOwner) { tasks ->
+                        adapter.submitTasks(projectId, tasks)
+                    }
+                }
+            },
+            onTaskClicked = { task ->
+                TaskDialogFragment.new(
+                    TaskDialogFragment.Args(
+                        projectId = task.projectId,
+                        modeEdit = true,
+                        taskId = task.id,
+                        initialName = task.name,
+                        initialStatus = task.status,
+                        initialWeight = task.weight,
+                        initialDeadlineAt = task.deadlineAt,
+                        initialNotify = task.notifyEnabled
+                    )
+                ).show(childFragmentManager, "TaskDialog")
+            }
+        )
 
-        // Observe data dari Room via ViewModel
-        vm.projects.observe(viewLifecycleOwner) { list ->
-            adapter.submit(list)
+        binding.rvProjects.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = this@HomeFragment.adapter
+            setHasFixedSize(true)
         }
 
-        // Klik header action (sementara dummy)
-        binding.btnAddProject.setOnClickListener {
-            // TODO: tampilkan BottomSheet Add Project
-            // vm.addProject("New Project")
+        vm.projects.observe(viewLifecycleOwner) { list: List<ProjectComputed> ->
+            latestProjects = list
+            adapter.submitList(list)
         }
+
+        binding.btnAddProject.setOnClickListener { openAddProject() }
+
+        childFragmentManager.setFragmentResultListener(
+            ChooseProjectDialogFragment.RESULT_KEY,
+            viewLifecycleOwner
+        ) { _, bundle ->
+            val projectId = bundle.getLong(ChooseProjectDialogFragment.RESULT_ID)
+            openAddTaskForProject(projectId)
+        }
+
         binding.btnAddTask.setOnClickListener {
-            // TODO: pilih project dulu atau buka sheet Add Task contextual
+            if (latestProjects.isEmpty()) {
+                snackbar("Bikin project dulu, baru tambah task")
+            } else {
+                val picks = latestProjects.map { p ->
+                    ChooseProjectDialogFragment.ProjectPick(id = p.id, name = p.name)
+                }
+                ChooseProjectDialogFragment.new(picks)
+                    .show(childFragmentManager, "ChooseProjectDialog")
+            }
         }
+
+    }
+
+    private fun openAddProject() {
+        ProjectDialogFragment
+            .new(ProjectDialogFragment.Args())
+            .show(childFragmentManager, "ProjectDialog")
+    }
+
+    private fun openEditProject(p: ProjectComputed) {
+        ProjectDialogFragment
+            .new(
+                ProjectDialogFragment.Args(
+                    modeEdit = true,
+                    projectId = p.id,
+                    initialName = p.name
+                )
+            )
+            .show(childFragmentManager, "ProjectDialog")
+    }
+
+    private fun openAddTaskForProject(projectId: Long) {
+        TaskDialogFragment
+            .new(TaskDialogFragment.Args(projectId = projectId))
+            .show(childFragmentManager, "TaskDialog")
+    }
+
+
+    private fun snackbar(msg: String) {
+        com.google.android.material.snackbar.Snackbar
+            .make(requireView(), msg, com.google.android.material.snackbar.Snackbar.LENGTH_SHORT)
+            .show()
     }
 
     override fun onDestroyView() {
@@ -50,3 +127,4 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         _binding = null
     }
 }
+

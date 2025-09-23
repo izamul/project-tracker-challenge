@@ -1,33 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardTask"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center_vertical"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="14dp"
+    app:cardUseCompatPadding="false"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/neutral_surfaceVariant"
+    app:strokeWidth="1dp"
+    app:rippleColor="?attr/colorControlHighlight">
 
-    <View
-        android:id="@+id/dot"
-        android:layout_width="6dp"
-        android:layout_height="6dp"
-        android:background="@drawable/circle_gray"
-        android:layout_marginEnd="8dp" />
-
-    <TextView
-        android:id="@+id/tvTaskTitle"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/task_title_main"
-        android:textColor="@color/text_primary"
-        android:textSize="14sp" />
+        android:padding="12dp">
 
-    <TextView
-        android:id="@+id/tvTaskWeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/weight_main"
-        android:textColor="@color/text_muted"
-        android:textSize="12sp"
-        android:layout_marginEnd="12dp" />
-</LinearLayout>
+        <!-- Status chip -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/badgeTaskStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/brand_primary"
+            app:strokeWidth="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="8dp">
+
+                <View
+                    android:id="@+id/statusDot"
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/circle_gray"/>
+
+                <TextView
+                    android:id="@+id/tvTaskStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Draft"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/brand_onPrimary"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tvTaskName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Task title"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintStart_toEndOf="@id/badgeTaskStatus"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnEditTask"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="12dp"/>
+
+        <!-- Edit -->
+        <ImageView
+            android:id="@+id/btnEditTask"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/circle_button_bg"
+            android:padding="6dp"
+            android:contentDescription="@string/edit_task_desc"
+            android:src="@drawable/ic_edit"
+            android:tint="@color/accent_primary_on"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="UseAppTint" />
+
+
+        <!-- Meta row (weight / deadline) -->
+        <TextView
+            android:id="@+id/tvWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weight: 2"
+            android:textColor="@color/text_muted"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTaskName"
+            android:layout_marginTop="18dp"/>
+
+        <TextView
+            android:id="@+id/tvDeadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Due: 12 Oct"
+            android:textColor="@color/text_muted"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@id/tvTaskName"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="18dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

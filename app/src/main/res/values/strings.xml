@@ -47,8 +47,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sub_title_task">3 task • weights auto-counted</string>
     <string name="progress_percentage">33%</string>
-    <string name="project_title">Project Nebula</string>
+    <string name="project_title">Project Nebula Tes</string>
     <string name="tag_status">In Progress</string>
     <string name="task_title_main">Task Title</string>
     <string name="weight_main">Weight: 1</string>
+    <string name="edit_task_desc">edit task</string>
 </resources>

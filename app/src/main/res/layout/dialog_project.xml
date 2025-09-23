@@ -37,24 +37,6 @@
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Optional: dropdown status -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilProjectStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:endIconMode="dropdown_menu">
-
-            <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                android:id="@+id/ddProjectStatus"
-                android:hint="Status"
-                android:paddingLeft="8dp"
-                android:inputType="none"
-                android:paddingVertical="10sp"
-                android:textSize="14sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

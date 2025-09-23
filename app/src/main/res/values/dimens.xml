@@ -1,3 +1,9 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Tinggi minimal 1 row (Material list item ≈ 56dp) -->
+    <dimen name="picker_item_min_height">46dp</dimen>
+
+    <!-- Max tinggi list ≈ 5 row + padding (56 * 5 + ~20) -->
+    <dimen name="picker_list_max_height">250dp</dimen>
 </resources>

@@ -46,7 +46,7 @@ class TaskDialogFragment : DialogFragment(R.layout.dialog_task) {
         super.onStart()
         dialog?.window?.apply {
             setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-            setWindowAnimations(R.style.DialogAnim_Save)
+            setWindowAnimations(R.style.DialogAnim_Base)
         }
     }
 
@@ -117,7 +117,7 @@ class TaskDialogFragment : DialogFragment(R.layout.dialog_task) {
             viewModel.onNotifyChange(notify)
             viewModel.onDeadlineChange(deadline)
 
-            dialog?.window?.setWindowAnimations(R.style.DialogAnim_Save)
+            dialog?.window?.setWindowAnimations(R.style.DialogAnim_Base)
             viewModel.save(
                 projectId = args.projectId,
                 isEdit = args.modeEdit,
@@ -129,7 +129,7 @@ class TaskDialogFragment : DialogFragment(R.layout.dialog_task) {
         // Delete
         binding.btnDelete.setOnClickListener {
             if (args.modeEdit && args.taskId != null) {
-                dialog?.window?.setWindowAnimations(R.style.DialogAnim_Delete)
+                dialog?.window?.setWindowAnimations(R.style.DialogAnim_Base)
                 viewModel.delete(projectId = args.projectId, taskId = args.taskId)
                 dismissAllowingStateLoss()
             }

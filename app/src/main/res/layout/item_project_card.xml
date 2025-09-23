@@ -18,14 +18,15 @@
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="0dp"
+            android:maxWidth="200dp"
             android:layout_height="wrap_content"
             android:text="@string/project_title"
             android:textColor="@color/text_primary"
-            android:textSize="18sp"
+            android:textSize="16sp"
+            android:maxLines="1"
             android:textStyle="bold"
             app:layout_constrainedWidth="true"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/groupActions"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <!-- Badge status -->
@@ -42,17 +43,18 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_height="21dp"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="4dp">
 
                 <View
+                    android:id="@+id/statusDot"
                     android:layout_width="6dp"
                     android:layout_height="6dp"
-                    android:background="@drawable/circle_orange"
-                    android:layout_marginEnd="4dp"/>
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/circle_orange" />
 
                 <TextView
                     android:id="@+id/tvStatus"
@@ -60,18 +62,17 @@
                     android:layout_height="wrap_content"
                     android:text="@string/tag_status"
                     android:textColor="@color/brand_onPrimary"
-                    android:textSize="11sp"/>
+                    android:textSize="11sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Actions kanan pakai Flow -->
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/groupActions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:flow_wrapMode="aligned"
             app:flow_horizontalStyle="packed"
-            app:constraint_referenced_ids="btnAddTask,btnEdit,btnDelete,btnExpand"
+            app:constraint_referenced_ids="btnAddTask,btnEdit,btnExpand"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -79,12 +80,14 @@
             android:id="@+id/btnAddTask"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/ic_add"
             android:background="@drawable/circle_button_bg"
             android:padding="6dp"
-            app:tint="@color/icon_muted"
+            android:src="@drawable/ic_add"
+            android:tint="@color/accent_primary_on"
+            app:layout_constraintEnd_toStartOf="@+id/btnEdit"
+            app:layout_constraintStart_toStartOf="@+id/groupActions"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            tools:ignore="UseAppTint" />
 
         <ImageView
             android:id="@+id/btnEdit"
@@ -94,17 +97,6 @@
             android:background="@drawable/circle_button_bg"
             android:padding="6dp"
             app:tint="@color/icon_muted"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <ImageView
-            android:id="@+id/btnDelete"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_delete"
-            android:background="@drawable/circle_button_bg"
-            android:padding="6dp"
-            app:tint="@color/accent_error"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -124,14 +116,13 @@
         <ProgressBar
             android:id="@+id/progress"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
+            android:layout_width="200dp"
             android:layout_height="8dp"
             android:progress="33"
             android:progressDrawable="@drawable/progress_bar_green"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="12dp"/>
+            android:layout_marginTop="22dp"/>
 
         <!-- Info -->
         <TextView
@@ -152,11 +143,12 @@
             android:layout_height="wrap_content"
             android:text="@string/progress_percentage"
             android:textColor="@color/text_primary"
-            android:textStyle="bold"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/progress"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="6dp"/>
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/progress"
+            app:layout_constraintStart_toEndOf="@+id/progress"
+            app:layout_constraintTop_toTopOf="@+id/progress" />
 
         <!-- Expand section -->
         <LinearLayout
