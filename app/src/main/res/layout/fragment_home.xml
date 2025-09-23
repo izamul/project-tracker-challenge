@@ -30,18 +30,54 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Project Tracker"
-                    android:textColor="@color/text_primary"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_top"
+                    android:clickable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- Foto / PP di kiri -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardAvatar"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/ivAvatar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/pp"
+                            android:scaleType="centerCrop"
+                            android:contentDescription="Profile Picture" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Teks "Profile" di sebelah kanan foto -->
+                    <TextView
+                        android:id="@+id/tvProfile"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Profile"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@color/text_primary"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_marginStart="12dp"
+                        app:layout_constraintStart_toEndOf="@id/cardAvatar"
+                        app:layout_constraintTop_toTopOf="@id/cardAvatar"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mini app • Bismillah dpt K*rja"
+                    android:text="Project Tracker • Bismillah dpt K*rja"
                     android:textColor="@color/text_muted"
                     android:textSize="14sp"
                     android:layout_marginTop="2dp" />

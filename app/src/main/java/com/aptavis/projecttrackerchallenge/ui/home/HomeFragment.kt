@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aptavis.projecttrackerchallenge.R
 import com.aptavis.projecttrackerchallenge.databinding.FragmentHomeBinding
@@ -11,6 +12,7 @@ import com.aptavis.projecttrackerchallenge.domain.model.ProjectComputed
 import com.aptavis.projecttrackerchallenge.ui.dialog.ChooseProjectDialogFragment
 import com.aptavis.projecttrackerchallenge.ui.dialog.ProjectDialogFragment
 import com.aptavis.projecttrackerchallenge.ui.dialog.TaskDialogFragment
+import com.aptavis.projecttrackerchallenge.ui.profile.ProfileFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -69,6 +71,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         binding.btnAddProject.setOnClickListener { openAddProject() }
 
+        binding.btnAddProject.setOnClickListener { openAddProject() }
+
         childFragmentManager.setFragmentResultListener(
             ChooseProjectDialogFragment.RESULT_KEY,
             viewLifecycleOwner
@@ -89,6 +93,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         }
 
+        binding.clTop.setOnClickListener { openProfile() }
     }
 
     private fun openAddProject() {
@@ -107,6 +112,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 )
             )
             .show(childFragmentManager, "ProjectDialog")
+    }
+
+    private fun openProfile() {
+        findNavController().navigate(R.id.action_home_to_profile)
+
     }
 
     private fun openAddTaskForProject(projectId: Long) {
