@@ -149,11 +149,10 @@ END
 ---
 
 
+
 ## Demo (Video)
 
-<video src="demo/demo_app.mp4" controls width="720">
-  Your browser doesn't support embedded video. 
-</video>
+Download demo: **[demo_app.mp4](demo/demo_app.mp4)**
 
 ---
 
